@@ -157,15 +157,15 @@ func (p *PixelAPI) jsonRequest(method, path string, target interface{}) error {
 }
 
 func (p *PixelAPI) form(method, url string, vals url.Values, target interface{}) error {
-	req, err := http.NewRequest(method, url, strings.NewReader(vals.Encode()))
+	req, err := http.NewRequest(method, p.apiEndpoint+"/"+url, strings.NewReader(vals.Encode()))
 	if err != nil {
-		return err
+		return fmt.Errorf("prepare request failed: %w", err)
 	}
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 	resp, err := p.do(req)
 	if err != nil {
-		return err
+		return fmt.Errorf("do request failed: %w", err)
 	}
 
 	defer resp.Body.Close()
@@ -177,7 +177,7 @@ func parseJSONResponse(resp *http.Response, target interface{}) (err error) {
 	if resp.StatusCode >= 400 {
 		errResp := Error{Status: resp.StatusCode}
 		if err = json.NewDecoder(resp.Body).Decode(&errResp); err != nil {
-			return err
+			return fmt.Errorf("failed to decode json error: %w", err)
 		}
 		return errResp
 	}
