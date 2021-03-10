@@ -1,11 +1,25 @@
 package pixelapi
 
-import (
-	"fornaxian.tech/pixeldrain_server/api/restapi/apitype"
-)
+import "time"
+
+// Patron is a backer on pixeldrain's patreon campaign
+type Patron struct {
+	PatreonUserID           string           `json:"patreon_user_id"`
+	ClaimID                 string           `json:"claim_id"`
+	CampaignID              string           `json:"campaign_id"`
+	FullName                string           `json:"full_name"`
+	LastChargeDate          time.Time        `json:"last_charge_date"`
+	LastChargeStatus        string           `json:"last_charge_status"`
+	LifetimeSupportCents    int              `json:"lifetime_support_cents"`
+	PatronStatus            string           `json:"patron_status"`
+	PledgeAmountCents       int              `json:"pledge_amount_cents"`
+	PledgeRelationshipStart time.Time        `json:"pledge_relationship_start"`
+	UserEmail               string           `json:"user_email"`
+	Subscription            SubscriptionType `json:"subscription"`
+}
 
 // GetPatreonByID returns information about a patron by the ID
-func (p *PixelAPI) GetPatreonByID(id string) (resp apitype.Patron, err error) {
+func (p *PixelAPI) GetPatreonByID(id string) (resp Patron, err error) {
 	return resp, p.jsonRequest("GET", "patreon/"+id, &resp)
 }
 

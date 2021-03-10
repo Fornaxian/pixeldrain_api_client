@@ -3,9 +3,27 @@ package pixelapi
 import (
 	"net/url"
 	"strconv"
+	"time"
 
-	"fornaxian.tech/pixeldrain_server/api/restapi/apitype"
+	"github.com/gocql/gocql"
 )
+
+// UserInfo contains information about the logged in user
+type UserInfo struct {
+	Username     string           `json:"username"`
+	Email        string           `json:"email"`
+	Subscription SubscriptionType `json:"subscription"`
+	IsAdmin      bool             `json:"is_admin"`
+}
+
+// UserSession is one user session
+type UserSession struct {
+	AuthKey      gocql.UUID `json:"auth_key"`
+	CreationIP   string     `json:"creation_ip_address"`
+	UserAgent    string     `json:"user_agent"`
+	CreationTime time.Time  `json:"creation_time"`
+	LastUsedTime time.Time  `json:"last_used_time"`
+}
 
 // UserRegister registers a new user on the Pixeldrain server. username and
 // password are always required. email is optional, but without it you will not
@@ -33,7 +51,7 @@ func (p *PixelAPI) UserRegister(username, email, password, captcha string) (err 
 // contain the returned API key. If saveKey is true the API key will also be
 // saved in the client and following requests with this client will be
 // autenticated
-func (p *PixelAPI) PostUserLogin(username, password string) (resp apitype.UserSession, err error) {
+func (p *PixelAPI) PostUserLogin(username, password string) (resp UserSession, err error) {
 	return resp, p.form(
 		"POST", "user/login",
 		url.Values{"username": {username}, "password": {password}},
@@ -42,17 +60,17 @@ func (p *PixelAPI) PostUserLogin(username, password string) (resp apitype.UserSe
 }
 
 // GetUser returns information about the logged in user. Requires an API key
-func (p *PixelAPI) GetUser() (resp apitype.UserInfo, err error) {
+func (p *PixelAPI) GetUser() (resp UserInfo, err error) {
 	return resp, p.jsonRequest("GET", "user", &resp)
 }
 
 // PostUserSession creates a new user sessions
-func (p *PixelAPI) PostUserSession() (resp apitype.UserSession, err error) {
+func (p *PixelAPI) PostUserSession() (resp UserSession, err error) {
 	return resp, p.jsonRequest("POST", "user/session", &resp)
 }
 
 // GetUserSession lists all active user sessions
-func (p *PixelAPI) GetUserSession() (resp []apitype.UserSession, err error) {
+func (p *PixelAPI) GetUserSession() (resp []UserSession, err error) {
 	return resp, p.jsonRequest("GET", "user/session", &resp)
 }
 
@@ -62,13 +80,23 @@ func (p *PixelAPI) DeleteUserSession(key string) (err error) {
 	return p.jsonRequest("DELETE", "user/session", nil)
 }
 
+// FileInfoSlice a collection of files which belong to a user
+type FileInfoSlice struct {
+	Files []FileInfo `json:"files"`
+}
+
 // GetUserFiles gets files uploaded by a user
-func (p *PixelAPI) GetUserFiles() (resp apitype.FileInfoSlice, err error) {
+func (p *PixelAPI) GetUserFiles() (resp FileInfoSlice, err error) {
 	return resp, p.jsonRequest("GET", "user/files", &resp)
 }
 
+// ListInfoSlice is a collection of lists which belong to a user
+type ListInfoSlice struct {
+	Lists []ListInfo `json:"lists"`
+}
+
 // GetUserLists gets lists created by a user
-func (p *PixelAPI) GetUserLists() (resp apitype.ListInfoSlice, err error) {
+func (p *PixelAPI) GetUserLists() (resp ListInfoSlice, err error) {
 	return resp, p.jsonRequest("GET", "user/lists", &resp)
 }
 
