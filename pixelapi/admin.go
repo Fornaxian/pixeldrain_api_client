@@ -3,6 +3,8 @@ package pixelapi
 import (
 	"net/url"
 	"time"
+
+	"github.com/gocql/gocql"
 )
 
 // AdminGlobal is a global setting in pixeldrain's back-end
@@ -25,6 +27,25 @@ type AdminAbuseReporter struct {
 	Created      time.Time `json:"created"`
 	FilesBlocked int       `json:"files_blocked"`
 	LastUsed     time.Time `json:"last_used"`
+}
+
+type AdminAbuseReportContainer struct {
+	ID              gocql.UUID         `json:"id"`
+	Reports         []AdminAbuseReport `json:"reports"`
+	File            FileInfo           `json:"file"`
+	Type            string             `json:"type"`
+	Status          string             `json:"status"`
+	FirstReportTime time.Time          `json:"first_report_time"`
+}
+
+// AdminAbuseReport is a report someone submitted for a file
+type AdminAbuseReport struct {
+	FileInstanceID gocql.UUID `json:"file_id"`
+	IPAddress      string     `json:"ip_address"`
+	Time           time.Time  `json:"time"`
+	Status         string     `json:"status"` // pending, rejected, granted
+	Type           string     `json:"type"`
+	EMail          string     `json:"email"`
 }
 
 // AdminGetGlobals returns the global API settings
