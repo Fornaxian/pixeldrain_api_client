@@ -48,6 +48,13 @@ type AdminAbuseReport struct {
 	EMail          string     `json:"email"`
 }
 
+type AdminIPBan struct {
+	Address    string    `json:"address"`
+	BanTime    time.Time `json:"ban_time"`
+	ExpireTime time.Time `json:"expire_time"`
+	Reason     string    `json:"reason"`
+}
+
 // AdminGetGlobals returns the global API settings
 func (p *PixelAPI) AdminGetGlobals() (resp []AdminGlobal, err error) {
 	return resp, p.jsonRequest("GET", "admin/globals", &resp)
