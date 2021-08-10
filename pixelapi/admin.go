@@ -53,6 +53,7 @@ type AdminIPBan struct {
 	BanTime    time.Time `json:"ban_time"`
 	ExpireTime time.Time `json:"expire_time"`
 	Reason     string    `json:"reason"`
+	Offences   int       `json:"offences"`
 }
 
 // AdminGetGlobals returns the global API settings
