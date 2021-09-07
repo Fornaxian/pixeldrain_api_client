@@ -31,6 +31,7 @@ type SubscriptionType struct {
 	FileSizeLimit          int64  `json:"file_size_limit"`
 	FileExpiryDays         int    `json:"file_expiry_days"`
 	DirectLinkingBandwidth int64  `json:"direct_linking_bandwidth"`
+	StorageSpace           int64  `json:"storage_space"`
 }
 
 // GetSubscriptionID returns the subscription object identified by the given ID

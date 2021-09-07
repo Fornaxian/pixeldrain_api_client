@@ -10,10 +10,11 @@ import (
 
 // UserInfo contains information about the logged in user
 type UserInfo struct {
-	Username     string           `json:"username"`
-	Email        string           `json:"email"`
-	Subscription SubscriptionType `json:"subscription"`
-	IsAdmin      bool             `json:"is_admin"`
+	Username         string           `json:"username"`
+	Email            string           `json:"email"`
+	Subscription     SubscriptionType `json:"subscription"`
+	StorageSpaceUsed int64            `json:"storage_space_used"`
+	IsAdmin          bool             `json:"is_admin"`
 }
 
 // UserSession is one user session
