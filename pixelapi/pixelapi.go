@@ -19,6 +19,7 @@ type PixelAPI struct {
 	apiEndpoint string
 	key         string
 	realIP      string
+	realAgent   string
 }
 
 // New creates a new Pixeldrain API client to query the Pixeldrain API with
@@ -65,6 +66,12 @@ func (p PixelAPI) RealIP(ip string) PixelAPI {
 	return p
 }
 
+// RealAgent sets the real user agent to use when making API requests
+func (p PixelAPI) RealAgent(agent string) PixelAPI {
+	p.realAgent = agent
+	return p
+}
+
 // Standard response types
 
 // Error is an error returned by the pixeldrain API. If the request failed
@@ -107,6 +114,9 @@ func (p *PixelAPI) do(r *http.Request) (*http.Response, error) {
 	}
 	if p.realIP != "" {
 		r.Header.Set("X-Real-IP", p.realIP)
+	}
+	if p.realAgent != "" {
+		r.Header.Set("User-Agent", p.realAgent)
 	}
 
 	return p.client.Do(r)
