@@ -7,9 +7,12 @@ import (
 )
 
 // FileID is returned when a file has been sucessfully uploaded
-type FileID struct {
+type FileIDCompat struct {
 	Success bool   `json:"success"`
 	ID      string `json:"id"`
+}
+type FileID struct {
+	ID string `json:"id"`
 }
 
 // FileInfo is the public file information response
