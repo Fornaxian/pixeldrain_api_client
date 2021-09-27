@@ -49,9 +49,10 @@ type FileStats struct {
 
 // FileTimeSeries returns historic data for a file
 type FileTimeSeries struct {
-	Views     TimeSeries `json:"views"`
-	Downloads TimeSeries `json:"downloads"`
-	Bandwidth TimeSeries `json:"bandwidth"`
+	Views               TimeSeries `json:"views"`
+	Downloads           TimeSeries `json:"downloads"`
+	Bandwidth           TimeSeries `json:"bandwidth"`
+	DirectLinkBandwidth TimeSeries `json:"direct_link_bandwidth"`
 }
 
 // TimeSeries contains data captures over a time span
