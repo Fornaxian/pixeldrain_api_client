@@ -36,8 +36,9 @@ type FileInfo struct {
 	AbuseType         string `json:"abuse_type"`
 	AbuseReporterName string `json:"abuse_reporter_name"`
 
-	CanEdit bool `json:"can_edit"`
-	ShowAds bool `json:"show_ads"`
+	CanEdit          bool `json:"can_edit"`
+	ShowAds          bool `json:"show_ads"`
+	AllowVideoPlayer bool `json:"allow_video_player"`
 }
 
 // FileStats contains realtime statistics for a file
