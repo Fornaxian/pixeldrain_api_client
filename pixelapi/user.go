@@ -15,6 +15,7 @@ type UserInfo struct {
 	Subscription     SubscriptionType `json:"subscription"`
 	StorageSpaceUsed int64            `json:"storage_space_used"`
 	IsAdmin          bool             `json:"is_admin"`
+	BalanceMicroEUR  int64            `json:"balance_micro_eur"`
 }
 
 // UserSession is one user session
@@ -99,6 +100,21 @@ type ListInfoSlice struct {
 // GetUserLists gets lists created by a user
 func (p *PixelAPI) GetUserLists() (resp ListInfoSlice, err error) {
 	return resp, p.jsonRequest("GET", "user/lists", &resp)
+}
+
+type UserTransaction struct {
+	Time               time.Time `json:"time"`
+	NewBalance         int64     `json:"new_balance"`
+	DepositAmount      int64     `json:"deposit_amount"`
+	SubscriptionCharge int64     `json:"subscription_charge"`
+	StorageCharge      int64     `json:"storage_charge"`
+	StorageUsed        int64     `json:"storage_used"`
+	BandwidthCharge    int64     `json:"bandwidth_charge"`
+	BandwidthUsed      int64     `json:"bandwidth_used"`
+}
+
+func (p *PixelAPI) GetUserTransactions() (resp []UserTransaction, err error) {
+	return resp, p.jsonRequest("GET", "user/transactions", &resp)
 }
 
 // PutUserPassword changes the user's password
