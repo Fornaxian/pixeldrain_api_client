@@ -23,17 +23,15 @@ type Subscription struct {
 // active subscription itself, only the properties of the subscription. Like the
 // perks and cost
 type SubscriptionType struct {
-	ID                     string `json:"id"`
-	Name                   string `json:"name"`
-	Type                   string `json:"type"`
-	DisableAdDisplay       bool   `json:"disable_ad_display"`
-	DisableAdsOnFiles      bool   `json:"disable_ads_on_files"`
-	FileSizeLimit          int64  `json:"file_size_limit"`
-	FileExpiryDays         int    `json:"file_expiry_days"`
-	DirectLinkingBandwidth int64  `json:"direct_linking_bandwidth"`
-	StorageSpace           int64  `json:"storage_space"`
-	PricePerTBStorage      int64  `json:"price_per_tb_storage"`
-	PricePerTBBandwidth    int64  `json:"price_per_tb_bandwidth"`
+	ID                  string `json:"id"`
+	Name                string `json:"name"`
+	Type                string `json:"type"`
+	FileSizeLimit       int64  `json:"file_size_limit"`
+	FileExpiryDays      int    `json:"file_expiry_days"`
+	StorageSpace        int64  `json:"storage_space"`
+	PricePerTBStorage   int64  `json:"price_per_tb_storage"`
+	PricePerTBBandwidth int64  `json:"price_per_tb_bandwidth"`
+	MonthlyTransferCap  int64  `json:"monthly_transfer_cap"`
 }
 
 // GetSubscriptionID returns the subscription object identified by the given ID

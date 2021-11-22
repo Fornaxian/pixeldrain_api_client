@@ -17,17 +17,18 @@ type FileID struct {
 
 // FileInfo is the public file information response
 type FileInfo struct {
-	Success       bool      `json:"success"`
-	ID            string    `json:"id"`
-	Name          string    `json:"name"`
-	Size          int64     `json:"size"`
-	Views         int64     `json:"views"`
-	BandwidthUsed int64     `json:"bandwidth_used"`
-	Downloads     int64     `json:"downloads"`
-	DateUpload    time.Time `json:"date_upload"`
-	DateLastView  time.Time `json:"date_last_view"`
-	MimeType      string    `json:"mime_type"`
-	ThumbnailHREF string    `json:"thumbnail_href"`
+	Success           bool      `json:"success"`
+	ID                string    `json:"id"`
+	Name              string    `json:"name"`
+	Size              int64     `json:"size"`
+	Views             int64     `json:"views"`
+	BandwidthUsed     int64     `json:"bandwidth_used"`
+	BandwidthUsedPaid int64     `json:"bandwidth_used_paid"`
+	Downloads         int64     `json:"downloads"`
+	DateUpload        time.Time `json:"date_upload"`
+	DateLastView      time.Time `json:"date_last_view"`
+	MimeType          string    `json:"mime_type"`
+	ThumbnailHREF     string    `json:"thumbnail_href"`
 
 	Availability        string `json:"availability"`
 	AvailabilityMessage string `json:"availability_message"`
@@ -43,17 +44,18 @@ type FileInfo struct {
 
 // FileStats contains realtime statistics for a file
 type FileStats struct {
-	Views     int64 `json:"views"`
-	Bandwidth int64 `json:"bandwidth"`
-	Downloads int64 `json:"downloads"`
+	Views         int64 `json:"views"`
+	Downloads     int64 `json:"downloads"`
+	Bandwidth     int64 `json:"bandwidth"`
+	BandwidthPaid int64 `json:"bandwidth_paid"`
 }
 
 // FileTimeSeries returns historic data for a file
 type FileTimeSeries struct {
-	Views               TimeSeries `json:"views"`
-	Downloads           TimeSeries `json:"downloads"`
-	Bandwidth           TimeSeries `json:"bandwidth"`
-	DirectLinkBandwidth TimeSeries `json:"direct_link_bandwidth"`
+	Views         TimeSeries `json:"views"`
+	Downloads     TimeSeries `json:"downloads"`
+	Bandwidth     TimeSeries `json:"bandwidth"`
+	BandwidthPaid TimeSeries `json:"bandwidth_paid"`
 }
 
 // TimeSeries contains data captures over a time span
