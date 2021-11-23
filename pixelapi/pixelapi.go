@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net"
 	"net/http"
 	"net/url"
@@ -120,23 +119,6 @@ func (p *PixelAPI) do(r *http.Request) (*http.Response, error) {
 	}
 
 	return p.client.Do(r)
-}
-
-func (p *PixelAPI) getString(path string) (string, error) {
-	req, err := http.NewRequest("GET", p.apiEndpoint+"/"+path, nil)
-	if err != nil {
-		return "", err
-	}
-	resp, err := p.do(req)
-	if err != nil {
-		return "", err
-	}
-
-	defer resp.Body.Close()
-
-	bodyBytes, err := ioutil.ReadAll(resp.Body)
-
-	return string(bodyBytes), err
 }
 
 func (p *PixelAPI) getRaw(path string) (io.ReadCloser, error) {
