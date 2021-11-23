@@ -12,6 +12,7 @@ type ListInfo struct {
 	DateCreated time.Time  `json:"date_created"`
 	FileCount   int        `json:"file_count"`
 	Files       []ListFile `json:"files"`
+	CanEdit     bool       `json:"can_edit"`
 }
 
 // ListFile information object from the pixeldrain API
