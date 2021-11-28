@@ -45,3 +45,17 @@ func (p *PixelAPI) GetSubscriptionID(id string) (resp Subscription, err error) {
 func (p *PixelAPI) PostSubscriptionLink(id string) (err error) {
 	return p.jsonRequest("POST", p.apiEndpoint+"/subscription/"+url.PathEscape(id)+"/link", nil)
 }
+
+type CouponCode struct {
+	ID     string `json:"id"`
+	Credit int64  `json:"credit"`
+	Uses   int    `json:"uses"`
+}
+
+func (p *PixelAPI) GetCouponID(id string) (resp CouponCode, err error) {
+	return resp, p.jsonRequest("GET", p.apiEndpoint+"/coupon/"+url.PathEscape(id), &resp)
+}
+
+func (p *PixelAPI) PostCouponRedeem(id string) (err error) {
+	return p.jsonRequest("POST", p.apiEndpoint+"/coupon/"+url.PathEscape(id)+"/redeem", nil)
+}
