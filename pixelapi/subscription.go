@@ -59,3 +59,15 @@ func (p *PixelAPI) GetCouponID(id string) (resp CouponCode, err error) {
 func (p *PixelAPI) PostCouponRedeem(id string) (err error) {
 	return p.jsonRequest("POST", "coupon/"+url.PathEscape(id)+"/redeem", nil)
 }
+
+type Invoice struct {
+	ID          string    `json:"id"`
+	Time        time.Time `json:"time"`
+	Amount      int64     `json:"amount"`
+	CheckoutURL string    `json:"checkout_url"`
+	Status      string    `json:"status"`
+}
+
+func (p *PixelAPI) GetBTCPayInvoices() (resp []Invoice, err error) {
+	return resp, p.jsonRequest("GET", "btcpay/invoice", &resp)
+}
