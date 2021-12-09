@@ -5,6 +5,15 @@ import (
 	"time"
 )
 
+// FilesystemPath contains a filesystem with a bucket and all its children
+// leading up to the requested node
+type FilesystemPath struct {
+	Bucket   Bucket           `json:"bucket"`
+	Parents  []FilesystemNode `json:"parents"`
+	Base     FilesystemNode   `json:"base"`
+	Children []FilesystemNode `json:"children"`
+}
+
 // Bucket holds a filesystem
 type Bucket struct {
 	Name          string            `json:"name"`
@@ -15,14 +24,6 @@ type Bucket struct {
 	WritePassword string            `json:"write_password"`
 	Properties    map[string]string `json:"properties"`
 	Permissions   Permissions       `json:"permissions"`
-}
-
-// FilesystemPath contains a filesystem with a bucket and all its children
-// leading up to the requested node
-type FilesystemPath struct {
-	Bucket  Bucket           `json:"bucket"`
-	Parents []FilesystemNode `json:"parents"`
-	Base    FilesystemNode   `json:"base"`
 }
 
 // FilesystemNode is the return value of the GET /filesystem/ API
@@ -36,8 +37,6 @@ type FilesystemNode struct {
 	// File params
 	FileSize int64  `json:"file_size"`
 	FileType string `json:"file_type"`
-
-	Children []FilesystemNode `json:"children"`
 }
 
 // Permissions contains the actions a user can perform on an object
