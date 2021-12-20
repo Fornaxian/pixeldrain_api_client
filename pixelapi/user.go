@@ -74,8 +74,8 @@ func (p *PixelAPI) GetUser() (resp UserInfo, err error) {
 }
 
 // PostUserSession creates a new user sessions
-func (p *PixelAPI) PostUserSession() (resp UserSession, err error) {
-	return resp, p.jsonRequest("POST", "user/session", &resp)
+func (p *PixelAPI) PostUserSession(app string) (resp UserSession, err error) {
+	return resp, p.form("POST", "user/session", url.Values{"app": {app}}, &resp)
 }
 
 // GetUserSession lists all active user sessions
