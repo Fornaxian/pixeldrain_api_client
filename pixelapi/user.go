@@ -26,6 +26,7 @@ type UserSession struct {
 	AuthKey      gocql.UUID `json:"auth_key"`
 	CreationIP   string     `json:"creation_ip_address"`
 	UserAgent    string     `json:"user_agent"`
+	AppName      string     `json:"app_name"`
 	CreationTime time.Time  `json:"creation_time"`
 	LastUsedTime time.Time  `json:"last_used_time"`
 }
@@ -53,13 +54,16 @@ func (p *PixelAPI) UserRegister(username, email, password, captcha string) (err 
 }
 
 // PostUserLogin logs a user in with the provided credentials. The response will
-// contain the returned API key. If saveKey is true the API key will also be
-// saved in the client and following requests with this client will be
-// autenticated
-func (p *PixelAPI) PostUserLogin(username, password string) (resp UserSession, err error) {
+// contain the returned API key. The app name is saved in the database and can
+// be found on the user's API keys page.
+func (p *PixelAPI) PostUserLogin(username, password, app string) (resp UserSession, err error) {
 	return resp, p.form(
 		"POST", "user/login",
-		url.Values{"username": {username}, "password": {password}},
+		url.Values{
+			"username": {username},
+			"password": {password},
+			"app_name": {app},
+		},
 		&resp,
 	)
 }
