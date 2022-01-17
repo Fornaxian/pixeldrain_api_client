@@ -49,11 +49,17 @@ type AdminAbuseReport struct {
 }
 
 type AdminIPBan struct {
-	Address    string    `json:"address"`
-	BanTime    time.Time `json:"ban_time"`
-	ExpireTime time.Time `json:"expire_time"`
-	Reason     string    `json:"reason"`
-	Offences   int       `json:"offences"`
+	Address  string              `json:"address"`
+	Offences []AdminIPBanOffence `json:"offences"`
+}
+type AdminIPBanOffence struct {
+	BanTime      time.Time  `json:"ban_time"`
+	ExpireTime   time.Time  `json:"expire_time"`
+	Reason       string     `json:"reason"`
+	Reporter     string     `json:"reporter"`
+	FileID       gocql.UUID `json:"file_id"`
+	FilePublicID string     `json:"file_public_id"`
+	FileName     string     `json:"file_name"`
 }
 
 // AdminGetGlobals returns the global API settings
