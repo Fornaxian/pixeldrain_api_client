@@ -4,9 +4,13 @@ import (
 	"time"
 )
 
+// ListID is returned when a list has been sucessfully created
+type ListID struct {
+	ID string `json:"id"`
+}
+
 // ListInfo information object from the pixeldrain API
 type ListInfo struct {
-	Success     bool       `json:"success"`
 	ID          string     `json:"id"`
 	Title       string     `json:"title"`
 	DateCreated time.Time  `json:"date_created"`
