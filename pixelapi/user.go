@@ -118,6 +118,8 @@ type UserTransaction struct {
 	StorageUsed        int64     `json:"storage_used"`
 	BandwidthCharge    int64     `json:"bandwidth_charge"`
 	BandwidthUsed      int64     `json:"bandwidth_used"`
+	KickbackFee        int64     `json:"kickback_fee"`
+	KickbackAmount     int64     `json:"kickback_amount"`
 }
 
 func (p *PixelAPI) GetUserTransactions() (resp []UserTransaction, err error) {
