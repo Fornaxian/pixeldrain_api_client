@@ -24,10 +24,10 @@ type FileInfo struct {
 	DateLastView      time.Time `json:"date_last_view"`
 	MimeType          string    `json:"mime_type"`
 	ThumbnailHREF     string    `json:"thumbnail_href"`
+	HashSHA256        string    `json:"hash_sha256"`
 
 	Availability        string `json:"availability"`
 	AvailabilityMessage string `json:"availability_message"`
-	AvailabilityName    string `json:"availability_name"`
 
 	AbuseType         string `json:"abuse_type"`
 	AbuseReporterName string `json:"abuse_reporter_name"`
