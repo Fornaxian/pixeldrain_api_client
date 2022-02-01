@@ -126,6 +126,18 @@ func (p *PixelAPI) GetUserTransactions() (resp []UserTransaction, err error) {
 	return resp, p.jsonRequest("GET", "user/transactions", &resp)
 }
 
+type UserActivity struct {
+	Time              time.Time `json:"time"`
+	Event             string    `json:"event"`
+	FileID            string    `json:"file_id"`
+	FileName          string    `json:"file_name"`
+	FileRemovalReason string    `json:"file_removal_reason"`
+}
+
+func (p *PixelAPI) GetUserActivity() (resp []UserActivity, err error) {
+	return resp, p.jsonRequest("GET", "user/activity", &resp)
+}
+
 // PutUserPassword changes the user's password
 func (p *PixelAPI) PutUserPassword(oldPW, newPW string) (err error) {
 	return p.form(
