@@ -26,12 +26,19 @@ type FileInfo struct {
 	ThumbnailHREF     string    `json:"thumbnail_href"`
 	HashSHA256        string    `json:"hash_sha256"`
 
+	// Abuse report information
 	Availability        string `json:"availability"`
 	AvailabilityMessage string `json:"availability_message"`
+	AbuseType           string `json:"abuse_type"`
+	AbuseReporterName   string `json:"abuse_reporter_name"`
 
-	AbuseType         string `json:"abuse_type"`
-	AbuseReporterName string `json:"abuse_reporter_name"`
+	// Personalization
+	CustomTheme      string `json:"custom_theme,omitempty"`
+	CustomHeader     string `json:"custom_header,omitempty"`
+	CustomBackground string `json:"custom_background,omitempty"`
+	CustomFooter     string `json:"custom_footer,omitempty"`
 
+	// Based on user permissions
 	CanEdit          bool `json:"can_edit"`
 	ShowAds          bool `json:"show_ads"`
 	AllowVideoPlayer bool `json:"allow_video_player"`

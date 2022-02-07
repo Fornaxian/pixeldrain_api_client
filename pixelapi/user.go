@@ -19,6 +19,12 @@ type UserInfo struct {
 	Hotlinking          bool             `json:"hotlinking_enabled"`
 	MonthlyTransferCap  int64            `json:"monthly_transfer_cap"`
 	MonthlyTransferUsed int64            `json:"monthly_transfer_used"`
+
+	// Personalization
+	CustomFileTheme      string `json:"custom_file_theme"`
+	CustomFileHeader     string `json:"custom_file_header"`
+	CustomFileBackground string `json:"custom_file_background"`
+	CustomFileFooter     string `json:"custom_file_footer"`
 }
 
 // UserSession is one user session
