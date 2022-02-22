@@ -28,3 +28,14 @@ func (p *PixelAPI) GetSiaPrice() (resp float64, err error) {
 	var sp SiaPrice
 	return sp.Price, p.jsonRequest("GET", "misc/sia_price", &sp)
 }
+
+type RateLimits struct {
+	DownloadLimit     int64 `json:"download_limit"`
+	DownloadLimitUsed int64 `json:"download_limit_used"`
+	TransferLimit     int64 `json:"transfer_limit"`
+	TransferLimitUsed int64 `json:"transfer_limit_used"`
+}
+
+func (p *PixelAPI) GetMiscRateLimits() (rl RateLimits, err error) {
+	return rl, p.jsonRequest("GET", "misc/rate_limits", &rl)
+}
