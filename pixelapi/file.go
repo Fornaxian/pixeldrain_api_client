@@ -39,9 +39,10 @@ type FileInfo struct {
 	CustomFooter     string `json:"custom_footer,omitempty"`
 
 	// Based on user permissions
-	CanEdit          bool `json:"can_edit"`
-	ShowAds          bool `json:"show_ads"`
-	AllowVideoPlayer bool `json:"allow_video_player"`
+	CanEdit            bool  `json:"can_edit"`
+	ShowAds            bool  `json:"show_ads"`
+	AllowVideoPlayer   bool  `json:"allow_video_player"`
+	DownloadSpeedLimit int64 `json:"download_speed_limit"`
 }
 
 // FileStats contains realtime statistics for a file
