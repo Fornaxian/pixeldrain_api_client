@@ -33,10 +33,7 @@ type FileInfo struct {
 	AbuseReporterName   string `json:"abuse_reporter_name"`
 
 	// Personalization
-	CustomTheme      string `json:"custom_theme,omitempty"`
-	CustomHeader     string `json:"custom_header,omitempty"`
-	CustomBackground string `json:"custom_background,omitempty"`
-	CustomFooter     string `json:"custom_footer,omitempty"`
+	Branding map[string]string `json:"branding,omitempty"`
 
 	// Based on user permissions
 	CanEdit            bool  `json:"can_edit"`
