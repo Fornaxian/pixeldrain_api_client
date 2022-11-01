@@ -21,6 +21,7 @@ type UserInfo struct {
 	MonthlyTransferUsed int64             `json:"monthly_transfer_used"`
 	FileViewerBranding  map[string]string `json:"file_viewer_branding"`
 	FileEmbedDomains    string            `json:"file_embed_domains"`
+	SkipFileViewer      bool              `json:"skip_file_viewer"`
 }
 
 // UserSession is one user session

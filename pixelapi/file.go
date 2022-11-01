@@ -40,6 +40,7 @@ type FileInfo struct {
 	ShowAds            bool  `json:"show_ads"`
 	AllowVideoPlayer   bool  `json:"allow_video_player"`
 	DownloadSpeedLimit int64 `json:"download_speed_limit"`
+	SkipFileViewer     bool  `json:"skip_file_viewer,omitempty"`
 }
 
 // FileStats contains realtime statistics for a file
