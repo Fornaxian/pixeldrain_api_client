@@ -23,33 +23,29 @@ type PixelAPI struct {
 
 // New creates a new Pixeldrain API client to query the Pixeldrain API with
 func New(apiEndpoint string) (api PixelAPI) {
-	api.client = &http.Client{Timeout: time.Minute * 5}
-	api.apiEndpoint = apiEndpoint
+	return PixelAPI{
+		client:      &http.Client{Timeout: time.Minute * 5},
+		apiEndpoint: apiEndpoint,
+	}
+}
 
+func (p PixelAPI) UnixSocketPath(socket string) PixelAPI {
 	// Pixeldrain uses unix domain sockets on its servers to minimize latency
 	// between the web interface daemon and API daemon. Golang does not
 	// understand that it needs to dial a unix socket on this case so we create
 	// a custom HTTP transport which uses the unix socket instead of TCP
-	if strings.HasPrefix(apiEndpoint, "http://unix:") {
-		// Get the socket path from the API endpoint
-		var sockPath = strings.TrimPrefix(apiEndpoint, "http://unix:")
 
-		// Fake the dialer to use a unix socket instead of TCP
-		api.client.Transport = &http.Transport{
-			DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
-				return net.Dial("unix", sockPath)
-			},
-		}
-
-		// Fake a domain name to stop Go's HTTP client from complaining about
-		// the domain name. This string will be completely ignored during
-		// requests
-		api.apiEndpoint = "http://api.sock"
-	} else {
-		api.client.Transport = http.DefaultTransport
+	// Fake the dialer to use a unix socket instead of TCP
+	p.client.Transport = &http.Transport{
+		DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
+			return net.Dial("unix", socket)
+		},
 	}
 
-	return api
+	// The hostname part of the URL is not used, but the protocol and path are.
+	// The pixeldrain unix socket doesn't use https so we need to disable it
+	p.apiEndpoint = strings.Replace(p.apiEndpoint, "https://", "http://", 1)
+	return p
 }
 
 // Login logs a user into the pixeldrain API. The original PixelAPI does not get
