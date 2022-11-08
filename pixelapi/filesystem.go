@@ -35,8 +35,9 @@ type FilesystemNode struct {
 	DateModified time.Time `json:"date_modified"`
 
 	// File params
-	FileSize int64  `json:"file_size"`
-	FileType string `json:"file_type"`
+	FileSize  int64  `json:"file_size"`
+	FileType  string `json:"file_type"`
+	SHA256Sum string `json:"sha256_sum"`
 }
 
 // Permissions contains the actions a user can perform on an object
