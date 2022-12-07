@@ -34,6 +34,7 @@ type RateLimits struct {
 	DownloadLimitUsed int64 `json:"download_limit_used"`
 	TransferLimit     int64 `json:"transfer_limit"`
 	TransferLimitUsed int64 `json:"transfer_limit_used"`
+	IPv6Bonus         int64 `json:"ipv6_bonus"`
 }
 
 func (p *PixelAPI) GetMiscRateLimits() (rl RateLimits, err error) {
