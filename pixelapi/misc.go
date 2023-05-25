@@ -30,11 +30,10 @@ func (p *PixelAPI) GetSiaPrice() (resp float64, err error) {
 }
 
 type RateLimits struct {
-	DownloadLimit     int64 `json:"download_limit"`
-	DownloadLimitUsed int64 `json:"download_limit_used"`
-	TransferLimit     int64 `json:"transfer_limit"`
-	TransferLimitUsed int64 `json:"transfer_limit_used"`
-	IPv6Bonus         int64 `json:"ipv6_bonus"`
+	DownloadLimit     int `json:"download_limit"`
+	DownloadLimitUsed int `json:"download_limit_used"`
+	TransferLimit     int `json:"transfer_limit"`
+	TransferLimitUsed int `json:"transfer_limit_used"`
 }
 
 func (p *PixelAPI) GetMiscRateLimits() (rl RateLimits, err error) {

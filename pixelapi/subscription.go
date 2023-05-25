@@ -26,12 +26,12 @@ type SubscriptionType struct {
 	ID                  string `json:"id"`
 	Name                string `json:"name"`
 	Type                string `json:"type"`
-	FileSizeLimit       int64  `json:"file_size_limit"`
+	FileSizeLimit       int    `json:"file_size_limit"`
 	FileExpiryDays      int    `json:"file_expiry_days"`
-	StorageSpace        int64  `json:"storage_space"`
+	StorageSpace        int    `json:"storage_space"`
 	PricePerTBStorage   int64  `json:"price_per_tb_storage"`
 	PricePerTBBandwidth int64  `json:"price_per_tb_bandwidth"`
-	MonthlyTransferCap  int64  `json:"monthly_transfer_cap"`
+	MonthlyTransferCap  int    `json:"monthly_transfer_cap"`
 	FileViewerBranding  bool   `json:"file_viewer_branding"`
 }
 

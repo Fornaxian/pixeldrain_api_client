@@ -16,14 +16,16 @@ type FilesystemPath struct {
 
 // FilesystemNode is the return value of the GET /filesystem/ API
 type FilesystemNode struct {
-	Type         string    `json:"type"`
-	Path         string    `json:"path"`
-	Name         string    `json:"name"`
-	DateCreated  time.Time `json:"date_created"`
-	DateModified time.Time `json:"date_modified"`
+	Type      string    `json:"type"`
+	Path      string    `json:"path"`
+	Name      string    `json:"name"`
+	Created   time.Time `json:"created"`
+	Modified  time.Time `json:"modified"`
+	ModeStr   string    `json:"mode_string"`
+	ModeOctal string    `json:"mode_octal"`
 
 	// File params
-	FileSize  int64  `json:"file_size"`
+	FileSize  int    `json:"file_size"`
 	FileType  string `json:"file_type"`
 	SHA256Sum string `json:"sha256_sum"`
 
@@ -40,6 +42,13 @@ type Permissions struct {
 	Read   bool `json:"read"`
 	Update bool `json:"update"`
 	Delete bool `json:"delete"`
+}
+
+// FileTimeSeries returns historic data for a filesystem node
+type FilesystemTimeSeries struct {
+	Downloads     TimeSeries `json:"downloads"`
+	BandwidthFree TimeSeries `json:"bandwidth_free"`
+	BandwidthPaid TimeSeries `json:"bandwidth_paid"`
 }
 
 // GetFilesystemBuckets returns a list of filesystems for the user. You need to

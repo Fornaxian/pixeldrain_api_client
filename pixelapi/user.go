@@ -13,12 +13,12 @@ type UserInfo struct {
 	Username            string            `json:"username"`
 	Email               string            `json:"email"`
 	Subscription        SubscriptionType  `json:"subscription"`
-	StorageSpaceUsed    int64             `json:"storage_space_used"`
+	StorageSpaceUsed    int               `json:"storage_space_used"`
 	IsAdmin             bool              `json:"is_admin"`
 	BalanceMicroEUR     int64             `json:"balance_micro_eur"`
 	Hotlinking          bool              `json:"hotlinking_enabled"`
-	MonthlyTransferCap  int64             `json:"monthly_transfer_cap"`
-	MonthlyTransferUsed int64             `json:"monthly_transfer_used"`
+	MonthlyTransferCap  int               `json:"monthly_transfer_cap"`
+	MonthlyTransferUsed int               `json:"monthly_transfer_used"`
 	FileViewerBranding  map[string]string `json:"file_viewer_branding"`
 	FileEmbedDomains    string            `json:"file_embed_domains"`
 	SkipFileViewer      bool              `json:"skip_file_viewer"`
@@ -118,9 +118,9 @@ type UserTransaction struct {
 	DepositAmount      int64     `json:"deposit_amount"`
 	SubscriptionCharge int64     `json:"subscription_charge"`
 	StorageCharge      int64     `json:"storage_charge"`
-	StorageUsed        int64     `json:"storage_used"`
+	StorageUsed        int       `json:"storage_used"`
 	BandwidthCharge    int64     `json:"bandwidth_charge"`
-	BandwidthUsed      int64     `json:"bandwidth_used"`
+	BandwidthUsed      int       `json:"bandwidth_used"`
 }
 
 func (p *PixelAPI) GetUserTransactions() (resp []UserTransaction, err error) {

@@ -15,16 +15,20 @@ type FileID struct {
 type FileInfo struct {
 	ID                string    `json:"id"`
 	Name              string    `json:"name"`
-	Size              int64     `json:"size"`
-	Views             int64     `json:"views"`
-	BandwidthUsed     int64     `json:"bandwidth_used"`
-	BandwidthUsedPaid int64     `json:"bandwidth_used_paid"`
-	Downloads         int64     `json:"downloads"`
+	Size              int       `json:"size"`
+	Views             int       `json:"views"`
+	BandwidthUsed     int       `json:"bandwidth_used"`
+	BandwidthUsedPaid int       `json:"bandwidth_used_paid"`
+	Downloads         int       `json:"downloads"`
 	DateUpload        time.Time `json:"date_upload"`
 	DateLastView      time.Time `json:"date_last_view"`
 	MimeType          string    `json:"mime_type"`
 	ThumbnailHREF     string    `json:"thumbnail_href"`
 	HashSHA256        string    `json:"hash_sha256"`
+
+	// Custom deletion options
+	DeleteAfterDate      time.Time `json:"delete_after_date"`
+	DeleteAfterDownloads int       `json:"delete_after_downloads"`
 
 	// Abuse report information
 	Availability        string `json:"availability"`
@@ -36,19 +40,20 @@ type FileInfo struct {
 	Branding map[string]string `json:"branding,omitempty"`
 
 	// Based on user permissions
-	CanEdit            bool  `json:"can_edit"`
-	ShowAds            bool  `json:"show_ads"`
-	AllowVideoPlayer   bool  `json:"allow_video_player"`
-	DownloadSpeedLimit int64 `json:"download_speed_limit"`
-	SkipFileViewer     bool  `json:"skip_file_viewer,omitempty"`
+	CanEdit            bool `json:"can_edit"`
+	CanDownload        bool `json:"can_download"`
+	ShowAds            bool `json:"show_ads"`
+	AllowVideoPlayer   bool `json:"allow_video_player"`
+	DownloadSpeedLimit int  `json:"download_speed_limit"`
+	SkipFileViewer     bool `json:"skip_file_viewer,omitempty"`
 }
 
 // FileStats contains realtime statistics for a file
 type FileStats struct {
-	Views         int64 `json:"views"`
-	Downloads     int64 `json:"downloads"`
-	Bandwidth     int64 `json:"bandwidth"`
-	BandwidthPaid int64 `json:"bandwidth_paid"`
+	Views         int `json:"views"`
+	Downloads     int `json:"downloads"`
+	Bandwidth     int `json:"bandwidth"`
+	BandwidthPaid int `json:"bandwidth_paid"`
 }
 
 // FileTimeSeries returns historic data for a file
@@ -62,7 +67,7 @@ type FileTimeSeries struct {
 // TimeSeries contains data captures over a time span
 type TimeSeries struct {
 	Timestamps []time.Time `json:"timestamps"`
-	Amounts    []int64     `json:"amounts"`
+	Amounts    []int       `json:"amounts"`
 }
 
 // GetFile makes a file download request and returns a readcloser. Don't forget
