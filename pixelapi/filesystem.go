@@ -46,9 +46,9 @@ type Permissions struct {
 
 // FileTimeSeries returns historic data for a filesystem node
 type FilesystemTimeSeries struct {
-	Downloads     TimeSeries `json:"downloads"`
-	BandwidthFree TimeSeries `json:"bandwidth_free"`
-	BandwidthPaid TimeSeries `json:"bandwidth_paid"`
+	Downloads    TimeSeries `json:"downloads"`
+	TransferFree TimeSeries `json:"transfer_free"`
+	TransferPaid TimeSeries `json:"transfer_paid"`
 }
 
 // GetFilesystemBuckets returns a list of filesystems for the user. You need to
