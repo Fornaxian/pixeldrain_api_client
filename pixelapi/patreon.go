@@ -5,8 +5,6 @@ import "time"
 // Patron is a backer on pixeldrain's patreon campaign
 type Patron struct {
 	PatreonUserID           string           `json:"patreon_user_id"`
-	ClaimID                 string           `json:"claim_id"`
-	CampaignID              string           `json:"campaign_id"`
 	FullName                string           `json:"full_name"`
 	LastChargeDate          time.Time        `json:"last_charge_date"`
 	LastChargeStatus        string           `json:"last_charge_status"`
