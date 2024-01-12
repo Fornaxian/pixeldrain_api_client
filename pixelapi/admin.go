@@ -48,6 +48,7 @@ type AdminAbuseReport struct {
 	Status         string     `json:"status"` // pending, rejected, granted
 	Type           string     `json:"type"`
 	EMail          string     `json:"email"`
+	Description    string     `json:"description"`
 }
 
 type AdminIPBan struct {
