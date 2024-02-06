@@ -33,6 +33,7 @@ type SubscriptionType struct {
 	PricePerTBBandwidth int64  `json:"price_per_tb_bandwidth"`
 	MonthlyTransferCap  int    `json:"monthly_transfer_cap"`
 	FileViewerBranding  bool   `json:"file_viewer_branding"`
+	FilesystemAccess    bool   `json:"filesystem_access"`
 }
 
 // GetSubscriptionID returns the subscription object identified by the given ID
