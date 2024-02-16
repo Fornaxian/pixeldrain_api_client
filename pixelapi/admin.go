@@ -22,7 +22,6 @@ type AdminBlockFiles struct {
 // reports to abuse@pixeldrain.com
 type AdminAbuseReporter struct {
 	FromAddress  string    `json:"from_address"`
-	MailServer   string    `json:"mail_server"`
 	Name         string    `json:"name"`
 	Status       string    `json:"status"`
 	Created      time.Time `json:"created"`

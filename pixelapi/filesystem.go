@@ -30,10 +30,11 @@ type FilesystemNode struct {
 	SHA256Sum string `json:"sha256_sum"`
 
 	// Meta params
-	ID            string            `json:"id,omitempty"`
-	ReadPassword  string            `json:"read_password,omitempty"`
-	WritePassword string            `json:"write_password,omitempty"`
-	Properties    map[string]string `json:"properties,omitempty"`
+	ID               string            `json:"id,omitempty"`
+	ReadPassword     string            `json:"read_password,omitempty"`
+	WritePassword    string            `json:"write_password,omitempty"`
+	Properties       map[string]string `json:"properties,omitempty"`
+	LoggingEnabledAt time.Time         `json:"logging_enabled_at"`
 }
 
 // Permissions contains the actions a user can perform on an object
