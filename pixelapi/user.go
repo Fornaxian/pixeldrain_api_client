@@ -10,18 +10,19 @@ import (
 
 // UserInfo contains information about the logged in user
 type UserInfo struct {
-	Username            string            `json:"username"`
-	Email               string            `json:"email"`
-	Subscription        SubscriptionType  `json:"subscription"`
-	StorageSpaceUsed    int               `json:"storage_space_used"`
-	IsAdmin             bool              `json:"is_admin"`
-	BalanceMicroEUR     int64             `json:"balance_micro_eur"`
-	Hotlinking          bool              `json:"hotlinking_enabled"`
-	MonthlyTransferCap  int               `json:"monthly_transfer_cap"`
-	MonthlyTransferUsed int               `json:"monthly_transfer_used"`
-	FileViewerBranding  map[string]string `json:"file_viewer_branding"`
-	FileEmbedDomains    string            `json:"file_embed_domains"`
-	SkipFileViewer      bool              `json:"skip_file_viewer"`
+	Username              string            `json:"username"`
+	Email                 string            `json:"email"`
+	Subscription          SubscriptionType  `json:"subscription"`
+	StorageSpaceUsed      int               `json:"storage_space_used"`
+	FilesystemStorageUsed int               `json:"filesystem_storage_used"`
+	IsAdmin               bool              `json:"is_admin"`
+	BalanceMicroEUR       int64             `json:"balance_micro_eur"`
+	Hotlinking            bool              `json:"hotlinking_enabled"`
+	MonthlyTransferCap    int               `json:"monthly_transfer_cap"`
+	MonthlyTransferUsed   int               `json:"monthly_transfer_used"`
+	FileViewerBranding    map[string]string `json:"file_viewer_branding"`
+	FileEmbedDomains      string            `json:"file_embed_domains"`
+	SkipFileViewer        bool              `json:"skip_file_viewer"`
 }
 
 // UserSession is one user session
