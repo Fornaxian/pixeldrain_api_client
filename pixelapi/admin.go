@@ -15,7 +15,8 @@ type AdminGlobal struct {
 
 // AdminBlockFiles is an array of files which were blocked
 type AdminBlockFiles struct {
-	FilesBlocked []string `json:"files_blocked"`
+	FilesBlocked           []string `json:"files_blocked"`
+	FilesystemNodesBlocked []string `json:"filesystem_nodes_blocked"`
 }
 
 // AdminAbuseReporter is an e-mail address which is allowed to send abuse
@@ -51,17 +52,24 @@ type AdminAbuseReport struct {
 }
 
 type AdminIPBan struct {
-	Address  string              `json:"address"`
-	Offences []AdminIPBanOffence `json:"offences"`
+	Address  string            `json:"address"`
+	Offences []AdminBanOffence `json:"offences"`
 }
-type AdminIPBanOffence struct {
-	BanTime      time.Time  `json:"ban_time"`
-	ExpireTime   time.Time  `json:"expire_time"`
-	Reason       string     `json:"reason"`
-	Reporter     string     `json:"reporter"`
-	FileID       gocql.UUID `json:"file_id"`
-	FilePublicID string     `json:"file_public_id"`
-	FileName     string     `json:"file_name"`
+
+type AdminUserBan struct {
+	UserID   string            `json:"user_id"`
+	Username string            `json:"username"`
+	Offences []AdminBanOffence `json:"offences"`
+}
+
+type AdminBanOffence struct {
+	BanTime    time.Time  `json:"ban_time"`
+	ExpireTime time.Time  `json:"expire_time"`
+	Reason     string     `json:"reason"`
+	Reporter   string     `json:"reporter"`
+	FileID     gocql.UUID `json:"file_id"`
+	FileLink   string     `json:"file_link"`
+	FileName   string     `json:"file_name"`
 }
 
 // AdminGetGlobals returns the global API settings

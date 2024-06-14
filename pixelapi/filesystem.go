@@ -24,6 +24,9 @@ type FilesystemNode struct {
 	ModeStr   string    `json:"mode_string"`
 	ModeOctal string    `json:"mode_octal"`
 
+	AbuseType       string     `json:"abuse_type,omitempty"`
+	AbuseReportTime *time.Time `json:"abuse_report_time,omitempty"`
+
 	// File params
 	FileSize  int    `json:"file_size"`
 	FileType  string `json:"file_type"`

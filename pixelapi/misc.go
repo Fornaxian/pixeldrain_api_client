@@ -11,13 +11,6 @@ func (p *PixelAPI) GetMiscRecaptcha() (resp Recaptcha, err error) {
 	return resp, p.jsonRequest("GET", "misc/recaptcha", &resp)
 }
 
-// GetMiscViewToken requests a viewtoken from the server. The viewtoken is valid
-// for a limited amount of time and can be used to add views to a file.
-// Viewtokens can only be requested from localhost
-func (p *PixelAPI) GetMiscViewToken() (resp string, err error) {
-	return resp, p.jsonRequest("GET", "misc/viewtoken", &resp)
-}
-
 // SiaPrice is the price of one siacoin
 type SiaPrice struct {
 	Price float64 `json:"price"`

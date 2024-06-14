@@ -1,6 +1,6 @@
 module fornaxian.tech/pixeldrain_api_client
 
-go 1.17
+go 1.22
 
 require github.com/gocql/gocql v1.3.1
 
