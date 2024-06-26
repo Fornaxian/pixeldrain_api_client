@@ -58,7 +58,7 @@ type AdminIPBan struct {
 
 type AdminUserBan struct {
 	UserID   string            `json:"user_id"`
-	Username string            `json:"username"`
+	User     UserInfo          `json:"user"`
 	Offences []AdminBanOffence `json:"offences"`
 }
 
