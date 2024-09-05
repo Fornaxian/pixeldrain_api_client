@@ -8,10 +8,11 @@ import (
 // FilesystemPath contains a filesystem with a bucket and all its children
 // leading up to the requested node
 type FilesystemPath struct {
-	Path        []FilesystemNode `json:"path"`
-	BaseIndex   int              `json:"base_index"`
-	Children    []FilesystemNode `json:"children"`
-	Permissions Permissions      `json:"permissions"`
+	Path        []FilesystemNode  `json:"path"`
+	BaseIndex   int               `json:"base_index"`
+	Children    []FilesystemNode  `json:"children"`
+	Permissions Permissions       `json:"permissions"`
+	Context     FilesystemContext `json:"context"`
 }
 
 // FilesystemNode is the return value of the GET /filesystem/ API
@@ -46,6 +47,10 @@ type Permissions struct {
 	Read   bool `json:"read"`
 	Update bool `json:"update"`
 	Delete bool `json:"delete"`
+}
+
+type FilesystemContext struct {
+	PremiumTransfer bool `json:"premium_transfer"`
 }
 
 // FileTimeSeries returns historic data for a filesystem node
