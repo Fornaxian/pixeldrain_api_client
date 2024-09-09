@@ -32,3 +32,16 @@ type RateLimits struct {
 func (p *PixelAPI) GetMiscRateLimits() (rl RateLimits, err error) {
 	return rl, p.jsonRequest("GET", "misc/rate_limits", &rl)
 }
+
+type ClusterSpeed struct {
+	ServerTX  int64 `json:"server_tx"`
+	ServerRX  int64 `json:"server_rx"`
+	CacheTX   int64 `json:"cache_tx"`
+	CacheRX   int64 `json:"cache_rx"`
+	StorageTX int64 `json:"storage_tx"`
+	StorageRX int64 `json:"storage_rx"`
+}
+
+func (p *PixelAPI) GetMiscClusterSpeed() (s ClusterSpeed, err error) {
+	return s, p.jsonRequest("GET", "misc/cluster_speed", &s)
+}
