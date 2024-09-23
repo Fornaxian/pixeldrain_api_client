@@ -22,15 +22,16 @@ type AdminBlockFiles struct {
 // AdminAbuseReporter is an e-mail address which is allowed to send abuse
 // reports to abuse@pixeldrain.com
 type AdminAbuseReporter struct {
-	FromAddress     string    `json:"from_address"`
-	Name            string    `json:"name"`
-	Status          string    `json:"status"`
-	Created         time.Time `json:"created"`
-	ReportsSent     int       `json:"reports_sent"`
-	FilesBlocked    int       `json:"files_blocked"`
-	LastUsed        time.Time `json:"last_used"`
-	LastMessageText string    `json:"last_message_text,omitempty"`
-	LastMessageHTML string    `json:"last_message_html,omitempty"`
+	FromAddress        string    `json:"from_address"`
+	Name               string    `json:"name"`
+	Status             string    `json:"status"`
+	Created            time.Time `json:"created"`
+	ReportsSent        int       `json:"reports_sent"`
+	FilesBlocked       int       `json:"files_blocked"`
+	LastUsed           time.Time `json:"last_used"`
+	LastMessageSubject string    `json:"last_message_subject"`
+	LastMessageText    string    `json:"last_message_text"`
+	LastMessageHTML    string    `json:"last_message_html"`
 }
 
 type AdminAbuseReportContainer struct {
