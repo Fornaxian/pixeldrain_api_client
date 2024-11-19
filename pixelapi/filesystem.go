@@ -24,6 +24,7 @@ type FilesystemNode struct {
 	Modified  time.Time `json:"modified"`
 	ModeStr   string    `json:"mode_string"`
 	ModeOctal string    `json:"mode_octal"`
+	CreatedBy string    `json:"created_by"`
 
 	AbuseType       string     `json:"abuse_type,omitempty"`
 	AbuseReportTime *time.Time `json:"abuse_report_time,omitempty"`
