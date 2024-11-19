@@ -34,18 +34,19 @@ type FilesystemNode struct {
 	SHA256Sum string `json:"sha256_sum"`
 
 	// Meta params
-	ID               string            `json:"id,omitempty"`
-	ReadPassword     string            `json:"read_password,omitempty"`
-	WritePassword    string            `json:"write_password,omitempty"`
-	Properties       map[string]string `json:"properties,omitempty"`
-	LoggingEnabledAt time.Time         `json:"logging_enabled_at"`
+	ID                  string                 `json:"id,omitempty"`
+	Properties          map[string]string      `json:"properties,omitempty"`
+	LoggingEnabledAt    time.Time              `json:"logging_enabled_at"`
+	LinkPermissions     *Permissions           `json:"link_permissions,omitempty"`
+	UserPermissions     map[string]Permissions `json:"user_permissions,omitempty"`
+	PasswordPermissions map[string]Permissions `json:"password_permissions,omitempty"`
 }
 
 // Permissions contains the actions a user can perform on an object
 type Permissions struct {
-	Create bool `json:"create"`
+	Owner  bool `json:"owner"`
 	Read   bool `json:"read"`
-	Update bool `json:"update"`
+	Write  bool `json:"write"`
 	Delete bool `json:"delete"`
 }
 
