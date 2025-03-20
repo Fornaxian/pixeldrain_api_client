@@ -44,14 +44,13 @@ type UserSession struct {
 // The register API can return multiple errors, which will be stored in the
 // Errors array. Check for len(Errors) == 0 to see if an error occurred. If err
 // != nil it means a connection error occurred
-func (p *PixelAPI) UserRegister(username, email, password, captcha string) (err error) {
+func (p *PixelAPI) UserRegister(username, email, password string) (err error) {
 	return p.form(
 		"POST", "user/register",
 		url.Values{
-			"username":           {username},
-			"email":              {email},
-			"password":           {password},
-			"recaptcha_response": {captcha},
+			"username": {username},
+			"email":    {email},
+			"password": {password},
 		},
 		nil,
 	)
