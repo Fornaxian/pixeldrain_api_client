@@ -23,6 +23,7 @@ type UserInfo struct {
 	FileViewerBranding    map[string]string `json:"file_viewer_branding"`
 	FileEmbedDomains      string            `json:"file_embed_domains"`
 	SkipFileViewer        bool              `json:"skip_file_viewer"`
+	AffiliateUserName     string            `json:"affiliate_user_name"`
 }
 
 // UserSession is one user session
@@ -121,6 +122,8 @@ type UserTransaction struct {
 	StorageUsed        int       `json:"storage_used"`
 	BandwidthCharge    int64     `json:"bandwidth_charge"`
 	BandwidthUsed      int       `json:"bandwidth_used"`
+	AffiliateAmount    int64     `json:"affiliate_amount"`
+	AffiliateCount     int       `json:"affiliate_count"`
 }
 
 func (p *PixelAPI) GetUserTransactions() (resp []UserTransaction, err error) {
