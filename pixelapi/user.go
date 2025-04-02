@@ -12,6 +12,8 @@ import (
 type UserInfo struct {
 	Username              string            `json:"username"`
 	Email                 string            `json:"email"`
+	EmailVerified         bool              `json:"email_verified"`
+	OTPEnabled            bool              `json:"otp_enabled"`
 	Subscription          SubscriptionType  `json:"subscription"`
 	StorageSpaceUsed      int               `json:"storage_space_used"`
 	FilesystemStorageUsed int               `json:"filesystem_storage_used"`
