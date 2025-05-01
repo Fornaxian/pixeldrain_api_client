@@ -71,6 +71,7 @@ type Invoice struct {
 	Country       string    `json:"country"`
 	PaymentMethod string    `json:"payment_method"`
 	Status        string    `json:"status"`
+	ProcessingFee int64     `json:"processing_fee"`
 }
 
 func (p *PixelAPI) GetBTCPayInvoices() (resp []Invoice, err error) {
