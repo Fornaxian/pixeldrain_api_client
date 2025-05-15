@@ -26,6 +26,9 @@ type UserInfo struct {
 	FileEmbedDomains      string            `json:"file_embed_domains"`
 	SkipFileViewer        bool              `json:"skip_file_viewer"`
 	AffiliateUserName     string            `json:"affiliate_user_name"`
+	CheckoutCountry       string            `json:"checkout_country"`
+	CheckoutName          string            `json:"checkout_name"`
+	CheckoutProvider      string            `json:"checkout_provider"`
 }
 
 // UserSession is one user session

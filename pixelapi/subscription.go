@@ -64,14 +64,15 @@ func (p *PixelAPI) PostCouponRedeem(id string) (err error) {
 }
 
 type Invoice struct {
-	ID            string    `json:"id"`
-	Time          time.Time `json:"time"`
-	Amount        int64     `json:"amount"`
-	VAT           int64     `json:"vat"`
-	Country       string    `json:"country"`
-	PaymentMethod string    `json:"payment_method"`
-	Status        string    `json:"status"`
-	ProcessingFee int64     `json:"processing_fee"`
+	ID             string    `json:"id"`
+	Time           time.Time `json:"time"`
+	Amount         int64     `json:"amount"`
+	VAT            int64     `json:"vat"`
+	Country        string    `json:"country"`
+	PaymentGateway string    `json:"payment_gateway"`
+	PaymentMethod  string    `json:"payment_method"`
+	Status         string    `json:"status"`
+	ProcessingFee  int64     `json:"processing_fee"`
 }
 
 func (p *PixelAPI) GetBTCPayInvoices() (resp []Invoice, err error) {

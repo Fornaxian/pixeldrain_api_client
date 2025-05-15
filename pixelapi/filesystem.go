@@ -41,6 +41,7 @@ type FilesystemNode struct {
 	LinkPermissions     *Permissions           `json:"link_permissions,omitempty"`
 	UserPermissions     map[string]Permissions `json:"user_permissions,omitempty"`
 	PasswordPermissions map[string]Permissions `json:"password_permissions,omitempty"`
+	CustomDomainName    string                 `json:"custom_domain_name,omitempty"`
 }
 
 // Permissions contains the actions a user can perform on an object
