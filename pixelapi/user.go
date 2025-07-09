@@ -17,6 +17,7 @@ type UserInfo struct {
 	Subscription          SubscriptionType  `json:"subscription"`
 	StorageSpaceUsed      int               `json:"storage_space_used"`
 	FilesystemStorageUsed int               `json:"filesystem_storage_used"`
+	FileCount             int               `json:"file_count"`
 	IsAdmin               bool              `json:"is_admin"`
 	BalanceMicroEUR       int64             `json:"balance_micro_eur"`
 	Hotlinking            bool              `json:"hotlinking_enabled"`
@@ -39,6 +40,7 @@ type UserSession struct {
 	AppName      string     `json:"app_name"`
 	CreationTime time.Time  `json:"creation_time"`
 	LastUsedTime time.Time  `json:"last_used_time"`
+	ValidDomains []string   `json:"valid_domains"`
 }
 
 // UserRegister registers a new user on the Pixeldrain server. username and
