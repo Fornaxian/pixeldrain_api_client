@@ -18,6 +18,7 @@ type UserInfo struct {
 	StorageSpaceUsed      int               `json:"storage_space_used"`
 	FilesystemStorageUsed int               `json:"filesystem_storage_used"`
 	FileCount             int               `json:"file_count"`
+	FilesystemNodeCount   int               `json:"filesystem_node_count"`
 	IsAdmin               bool              `json:"is_admin"`
 	BalanceMicroEUR       int64             `json:"balance_micro_eur"`
 	Hotlinking            bool              `json:"hotlinking_enabled"`
