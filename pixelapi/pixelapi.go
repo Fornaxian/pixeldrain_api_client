@@ -130,7 +130,7 @@ func (p *PixelAPI) getRaw(path string) (io.ReadCloser, error) {
 	return resp.Body, err
 }
 
-func (p *PixelAPI) jsonRequest(method, path string, target interface{}) error {
+func (p *PixelAPI) jsonRequest(method, path string, target any) error {
 	req, err := http.NewRequest(method, p.apiEndpoint+"/"+path, nil)
 	if err != nil {
 		return err
@@ -141,11 +141,14 @@ func (p *PixelAPI) jsonRequest(method, path string, target interface{}) error {
 	}
 
 	defer resp.Body.Close()
-	return parseJSONResponse(resp, target)
+	if err = parseJSONResponse(resp, target); err != nil {
+		return fmt.Errorf("failed to parse API response for %s '%s': %w", method, path, err)
+	}
+	return nil
 }
 
-func (p *PixelAPI) form(method, url string, vals url.Values, target interface{}) error {
-	req, err := http.NewRequest(method, p.apiEndpoint+"/"+url, strings.NewReader(vals.Encode()))
+func (p *PixelAPI) form(method, path string, vals url.Values, target any) error {
+	req, err := http.NewRequest(method, p.apiEndpoint+"/"+path, strings.NewReader(vals.Encode()))
 	if err != nil {
 		return fmt.Errorf("prepare request failed: %w", err)
 	}
@@ -157,10 +160,13 @@ func (p *PixelAPI) form(method, url string, vals url.Values, target interface{})
 	}
 
 	defer resp.Body.Close()
-	return parseJSONResponse(resp, target)
+	if err = parseJSONResponse(resp, target); err != nil {
+		return fmt.Errorf("failed to parse API response for %s '%s': %w", method, path, err)
+	}
+	return nil
 }
 
-func parseJSONResponse(resp *http.Response, target interface{}) (err error) {
+func parseJSONResponse(resp *http.Response, target any) (err error) {
 	// Test for client side and server side errors
 	if resp.StatusCode >= 400 {
 		errResp := Error{Status: resp.StatusCode}
