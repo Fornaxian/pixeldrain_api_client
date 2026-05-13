@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/gocql/gocql"
+	gocql "github.com/apache/cassandra-gocql-driver/v2"
 )
 
 // Subscription contains information about a user's subscription. When it

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gocql/gocql"
+	gocql "github.com/apache/cassandra-gocql-driver/v2"
 )
 
 // UserInfo contains information about the logged in user

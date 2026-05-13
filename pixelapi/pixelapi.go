@@ -103,6 +103,14 @@ func ErrIsClientError(err error) bool {
 	return false
 }
 
+// ErrIsClientError returns true if the error is a client-side error
+func ErrIsNotFound(err error) bool {
+	if apierr, ok := err.(Error); ok && apierr.Status == 404 {
+		return true
+	}
+	return false
+}
+
 func (p *PixelAPI) do(r *http.Request) (*http.Response, error) {
 	if p.key != "" {
 		r.SetBasicAuth("", p.key)
