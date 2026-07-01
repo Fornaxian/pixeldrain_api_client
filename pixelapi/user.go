@@ -10,6 +10,7 @@ import (
 
 // UserInfo contains information about the logged in user
 type UserInfo struct {
+	ID                    gocql.UUID        `json:"id"`
 	Username              string            `json:"username"`
 	Email                 string            `json:"email"`
 	EmailVerified         bool              `json:"email_verified"`
