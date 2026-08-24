@@ -10,9 +10,14 @@ import (
 
 // UserInfo contains information about the logged in user
 type UserInfo struct {
-	ID                    gocql.UUID        `json:"id"`
-	Username              string            `json:"username"`
-	Email                 string            `json:"email"`
+	ID                  gocql.UUID `json:"id"`
+	Username            string     `json:"username"`
+	EmailAddresses      []string   `json:"email_addresses"`
+	EmailAddressPending string     `json:"email_address_pending"`
+	CanUpload           bool       `json:"can_upload"`
+	// Deprecated: use EmailAddresses instead. Contains the first address
+	Email string `json:"email"`
+	// Deprecated: use EmailAddresses instead
 	EmailVerified         bool              `json:"email_verified"`
 	OTPEnabled            bool              `json:"otp_enabled"`
 	Subscription          SubscriptionType  `json:"subscription"`
