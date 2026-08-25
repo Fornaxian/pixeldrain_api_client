@@ -1,8 +1,10 @@
 package pixelapi
 
-// Recaptcha stores the reCaptcha site key
+// Recaptcha stores the site keys of the captcha providers. A key is empty when
+// that provider is not configured
 type Recaptcha struct {
-	SiteKey string `json:"site_key"`
+	SiteKey         string `json:"site_key"`
+	HCaptchaSiteKey string `json:"hcaptcha_site_key"`
 }
 
 // GetMiscRecaptcha gets the reCaptcha site key from the pixelapi server. If

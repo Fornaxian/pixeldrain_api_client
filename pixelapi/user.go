@@ -101,10 +101,16 @@ func (p *PixelAPI) GetUserSession() (resp []UserSession, err error) {
 	return resp, p.jsonRequest("GET", "user/session", &resp)
 }
 
-// DeleteUserSession destroys an API key so it can no longer be used to perform
-// actions
-func (p *PixelAPI) DeleteUserSession(key string) (err error) {
-	return p.jsonRequest("DELETE", "user/session", nil)
+// DeleteUserSession invalidates the API key which is used for this request, so
+// it can no longer be used to perform actions. Not every session is destroyed
+// by this request, the returned status code says what happened. See the API
+// documentation for the codes this endpoint can return
+func (p *PixelAPI) DeleteUserSession() (statusCode string, err error) {
+	var resp struct {
+		StatusCode string `json:"value"`
+	}
+	err = p.jsonRequest("DELETE", "user/session", &resp)
+	return resp.StatusCode, err
 }
 
 // FileInfoSlice a collection of files which belong to a user
