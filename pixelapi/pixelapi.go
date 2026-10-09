@@ -138,6 +138,13 @@ func (p *PixelAPI) getRaw(path string) (io.ReadCloser, error) {
 	return resp.Body, err
 }
 
+// GetJSON sends a GET request to path and decodes the response into target.
+// Decoding into a json.RawMessage passes the response on without dropping the
+// fields which this client's types don't have
+func (p *PixelAPI) GetJSON(path string, target any) error {
+	return p.jsonRequest("GET", path, target)
+}
+
 func (p *PixelAPI) jsonRequest(method, path string, target any) error {
 	req, err := http.NewRequest(method, p.apiEndpoint+"/"+path, nil)
 	if err != nil {
